@@ -20,14 +20,14 @@ namespace JekyllWriter
 		
 		void ReleaseDesignerOutlets ()
 		{
-			if (textView != null) {
-				textView.Dispose ();
-				textView = null;
-			}
-
 			if (postsView != null) {
 				postsView.Dispose ();
 				postsView = null;
+			}
+
+			if (textView != null) {
+				textView.Dispose ();
+				textView = null;
 			}
 		}
 	}
