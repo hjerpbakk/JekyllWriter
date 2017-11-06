@@ -2,6 +2,7 @@
 using System.Linq;
 using System.IO;
 using JekyllWriter.Model;
+using JekyllWriter.Parsers;
 
 namespace JekyllWriter.Files
 {
@@ -9,19 +10,23 @@ namespace JekyllWriter.Files
     {
         readonly string postsPath;
         readonly string draftsPath;
+        readonly PostParser parser;
 
         public JekyllFileSystem(string jekyllPath)
         {
             // TODO: if exsists and such
             postsPath = Path.Combine(jekyllPath, "_posts");
             draftsPath = Path.Combine(jekyllPath, "_drafts");
+            parser = new PostParser();
         }
 
         public Folder GetPosts() => GetPostFiles(postsPath, "Posts");
 
         public Folder GetDrafts() => GetPostFiles(draftsPath, "Drafts");
 
-        public Post ReadPost(PostFile post) => new Post(File.ReadAllText(post.Path), post);
+        public Post ReadPost(Model.File post) => parser.Parse(System.IO.File.ReadAllText(post.Path), post);
+
+        public void SavePost(Post post) => System.IO.File.WriteAllText(post.File.Path, post.ToString());
  
         // TODO: parse date and show properly, indicate filetype through icon. Sorting should stay the same
         Folder GetPostFiles(string path, string name) {
@@ -30,7 +35,7 @@ namespace JekyllWriter.Files
                         let fileName = Path.GetFileName(p)
                         where fileName != ".DS_Store"
                         orderby fileName descending
-                        select new PostFile(fileName, Path.Combine(path, p));
+                        select new Model.File(fileName, Path.Combine(path, p));
             return new Folder(name, posts.ToArray());
         }
     }

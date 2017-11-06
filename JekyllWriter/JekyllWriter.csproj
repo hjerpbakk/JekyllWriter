@@ -49,6 +49,9 @@
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="Xamarin.Mac" />
+    <Reference Include="YamlDotNet">
+      <HintPath>..\packages\YamlDotNet.4.2.2\lib\netstandard1.3\YamlDotNet.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Contents.json" />
@@ -70,10 +73,13 @@
     <Folder Include="Views\" />
     <Folder Include="Views\Posts\" />
     <Folder Include="Model\" />
+    <Folder Include="ViewControllers\" />
+    <Folder Include="Parsers\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Info.plist" />
     <None Include="Entitlements.plist" />
+    <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Main.cs" />
@@ -85,8 +91,13 @@
     <Compile Include="Files\JekyllFileSystem.cs" />
     <Compile Include="Views\Posts\PostsDataSouce.cs" />
     <Compile Include="Views\Posts\PostsDelegate.cs" />
-    <Compile Include="Model\PostFile.cs" />
+    <Compile Include="Model\File.cs" />
     <Compile Include="Model\Folder.cs" />
+    <Compile Include="Model\Content.cs" />
+    <Compile Include="ViewControllers\PostController.cs" />
+    <Compile Include="Model\Preamble.cs" />
+    <Compile Include="Parsers\PostParser.cs" />
+    <Compile Include="Parsers\PreambleParser.cs" />
     <Compile Include="Model\Post.cs" />
   </ItemGroup>
   <ItemGroup>

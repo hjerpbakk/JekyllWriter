@@ -7,10 +7,12 @@ namespace JekyllWriter.Views.Posts
 {
     public class PostsDelegate : NSOutlineViewDelegate
     {
-        readonly Action<PostFile> selctionChangedAction;
+        readonly Action selectionIsChanging;
+        readonly Action<File> selctionChangedAction;
 
-        public PostsDelegate(Action<PostFile> selctionChangedAction)
+        public PostsDelegate(Action selectionIsChanging, Action<File> selctionChangedAction)
         {
+            this.selectionIsChanging = selectionIsChanging ?? throw new ArgumentNullException(nameof(selectionIsChanging));
             this.selctionChangedAction = selctionChangedAction ?? throw new ArgumentNullException(nameof(selctionChangedAction));
         }
 
@@ -18,7 +20,7 @@ namespace JekyllWriter.Views.Posts
         {
             string identifier;
             string value;
-            var fileItem = item as PostFile;
+            var fileItem = item as File;
             if (fileItem == null) {
                 identifier = "HeaderCell";
                 value = ((Folder)item).Name;
@@ -34,16 +36,28 @@ namespace JekyllWriter.Views.Posts
 
         public override bool IsGroupItem(NSOutlineView outlineView, NSObject item) => item is Folder;
 
-        public override bool ShouldSelectItem(NSOutlineView outlineView, NSObject item) => item is PostFile;
+        public override bool ShouldSelectItem(NSOutlineView outlineView, NSObject item) => item is File;
+
+        public override void SelectionIsChanging(NSNotification notification) => selectionIsChanging();
 
         public override void SelectionDidChange(NSNotification notification)
         {
-            var outlineView = notification.Object as NSOutlineView;
-            if (outlineView == null) {
+            var postFile = GetPostFileFromSelectedRow(notification);
+            if (postFile == null) {
                 return;
             }
 
-            selctionChangedAction((PostFile)outlineView.ItemAtRow(outlineView.SelectedRow));
+            selctionChangedAction(postFile);
+        }
+
+        File GetPostFileFromSelectedRow(NSNotification notification) {
+            var outlineView = notification.Object as NSOutlineView;
+            if (outlineView == null)
+            {
+                return null;
+            }
+
+            return (File)outlineView.ItemAtRow(outlineView.SelectedRow);
         }
     }
 }
