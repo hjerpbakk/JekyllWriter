@@ -12,7 +12,7 @@ namespace JekyllWriter.Parsers
 
         public PreambleParser()
         {
-            var namingConvention = new CamelCaseNamingConvention();
+            var namingConvention = new UnderscoredNamingConvention();
             deserializer = new DeserializerBuilder()
                 .WithNamingConvention(namingConvention)
                 .IgnoreUnmatchedProperties()

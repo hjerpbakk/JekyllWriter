@@ -12,13 +12,12 @@ namespace JekyllWriter.Model
             parser = new PreambleParser(); 
         }
 
-        public List<string> Categories { get; set; }
-        public string Layout { get; set; }
-        public string Title { get; set; }
-        // TODO: Hvorfor dukker ikke denne opp??
-        public string Meta_Description { get; set; }
-        public DateTime Date { get; set; }
-        public List<string> Tags { get; set; }
+        public List<string> categories { get; set; }
+        public string layout { get; set; }
+        public string title { get; set; }
+        public string meta_description { get; set; }
+        public DateTime date { get; set; }
+        public List<string> tags { get; set; }
 
         public override string ToString() => parser.Parse(this);
     }
