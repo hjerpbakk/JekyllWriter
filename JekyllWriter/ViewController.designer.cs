@@ -16,7 +16,13 @@ namespace JekyllWriter
 		AppKit.NSOutlineView postsView { get; set; }
 
 		[Outlet]
+		AppKit.NSStackView stackView { get; set; }
+
+		[Outlet]
 		AppKit.NSTextView textView { get; set; }
+
+		[Outlet]
+		AppKit.NSScrollView textViewParent { get; set; }
 		
 		void ReleaseDesignerOutlets ()
 		{
@@ -25,9 +31,19 @@ namespace JekyllWriter
 				postsView = null;
 			}
 
+			if (stackView != null) {
+				stackView.Dispose ();
+				stackView = null;
+			}
+
 			if (textView != null) {
 				textView.Dispose ();
 				textView = null;
+			}
+
+			if (textViewParent != null) {
+				textViewParent.Dispose ();
+				textViewParent = null;
 			}
 		}
 	}

@@ -21,20 +21,18 @@ namespace JekyllWriter.ViewControllers
         readonly ManualResetEventSlim manualResetEvent;
         readonly Thread fileThread;
 
-        public PostController(JekyllFileSystem jekyllFileSystem, NSTextView textView, File file)
+        // TODO: Lagring må tas ut herfra... Kun kobling mot view her, ditto i den andre kontrolleren
+        public PostController(JekyllFileSystem jekyllFileSystem, NSTextView textView, Post post)
         {
             this.jekyllFileSystem = jekyllFileSystem ?? throw new ArgumentNullException(nameof(jekyllFileSystem));
             this.textView = textView ?? throw new ArgumentNullException(nameof(textView));
-            if (file == null) {
-                throw new ArgumentNullException(nameof(file));  
-            }
+            this.post = post;
 
             timer = new Timer(SaveWaitPeriod)
             {
                 AutoReset = false,
             };
             timer.Elapsed += Timer_Elapsed;
-            post = jekyllFileSystem.ReadPost(file);
             textView.Value = post.Content.Text;
             textView.TextDidChange += TextView_TextDidChange;
 

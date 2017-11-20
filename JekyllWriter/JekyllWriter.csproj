@@ -91,7 +91,7 @@
     <Compile Include="Files\JekyllFileSystem.cs" />
     <Compile Include="Views\Posts\PostsDataSouce.cs" />
     <Compile Include="Views\Posts\PostsDelegate.cs" />
-    <Compile Include="Model\File.cs" />
+    <Compile Include="Model\SourceFile.cs" />
     <Compile Include="Model\Folder.cs" />
     <Compile Include="Model\Content.cs" />
     <Compile Include="ViewControllers\PostController.cs" />
@@ -99,6 +99,12 @@
     <Compile Include="Parsers\PostParser.cs" />
     <Compile Include="Parsers\PreambleParser.cs" />
     <Compile Include="Model\Post.cs" />
+    <Compile Include="ViewControllers\PreambleController.cs" />
+    <Compile Include="MainWindowController.cs" />
+    <Compile Include="MainWindowController.designer.cs">
+      <DependentUpon>MainWindowController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\PreambleView.cs" />
   </ItemGroup>
   <ItemGroup>
     <InterfaceDefinition Include="Main.storyboard" />

@@ -5,13 +5,13 @@ namespace JekyllWriter.Model
 {
     public class Folder : NSObject
     {
-        public Folder(string name, File[] files)
+        public Folder(string name, SourceFile[] files)
         {
             Name = name ?? throw new ArgumentNullException(nameof(name));
             Files = files ?? throw new ArgumentNullException(nameof(files));
         }
 
         public string Name { get; }
-        public File[] Files { get; }
+        public SourceFile[] Files { get; }
     }
 }

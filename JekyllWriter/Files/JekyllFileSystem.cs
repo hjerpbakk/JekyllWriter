@@ -24,7 +24,7 @@ namespace JekyllWriter.Files
 
         public Folder GetDrafts() => GetPostFiles(draftsPath, "Drafts");
 
-        public Post ReadPost(Model.File post) => parser.Parse(System.IO.File.ReadAllText(post.Path), post);
+        public Post ReadPost(Model.SourceFile file) => parser.Parse(System.IO.File.ReadAllText(file.Path), file);
 
         public void SavePost(Post post) => System.IO.File.WriteAllText(post.File.Path, post.ToString());
  
@@ -35,7 +35,7 @@ namespace JekyllWriter.Files
                         let fileName = Path.GetFileName(p)
                         where fileName != ".DS_Store"
                         orderby fileName descending
-                        select new Model.File(fileName, Path.Combine(path, p));
+                        select new Model.SourceFile(fileName, Path.Combine(path, p));
             return new Folder(name, posts.ToArray());
         }
     }

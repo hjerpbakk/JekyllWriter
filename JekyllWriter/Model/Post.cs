@@ -2,7 +2,7 @@
 {
     public struct Post
     {
-        public Post(Preamble preamble, Content content, File file)
+        public Post(Preamble preamble, Content content, SourceFile file)
         {
             Preamble = preamble;
             Content = content;
@@ -11,7 +11,7 @@
 
         public Preamble Preamble { get; }
         public Content Content { get; }
-        public File File { get; }
+        public SourceFile File { get; }
 
         public Post UpdatedPost(string content) => new Post(Preamble, new Content(content), File);
 

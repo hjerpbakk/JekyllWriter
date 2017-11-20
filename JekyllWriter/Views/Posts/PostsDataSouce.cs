@@ -16,6 +16,7 @@ namespace JekyllWriter.Views.Posts
             this.folders = folders;
         }
 
+        // TODO: Noe paging el, trenger vel ikke vise alle hele tiden???
         public override nint GetChildrenCount(NSOutlineView outlineView, NSObject item)
         {
             if (item == null)

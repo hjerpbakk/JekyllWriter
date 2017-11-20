@@ -12,7 +12,7 @@ namespace JekyllWriter.Parsers
             preambleParser = new PreambleParser();
         }
 
-        public Post Parse(string fullText, File file) {
+        public Post Parse(string fullText, SourceFile file) {
             var indexOfFirstLineBreak = fullText.IndexOf('\n');
             var indexOfPreambleEnd = fullText.IndexOf("---\n", indexOfFirstLineBreak, StringComparison.InvariantCulture);
             if (indexOfPreambleEnd == -1)

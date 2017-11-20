@@ -8,9 +8,9 @@ namespace JekyllWriter.Views.Posts
     public class PostsDelegate : NSOutlineViewDelegate
     {
         readonly Action selectionIsChanging;
-        readonly Action<File> selctionChangedAction;
+        readonly Action<SourceFile> selctionChangedAction;
 
-        public PostsDelegate(Action selectionIsChanging, Action<File> selctionChangedAction)
+        public PostsDelegate(Action selectionIsChanging, Action<SourceFile> selctionChangedAction)
         {
             this.selectionIsChanging = selectionIsChanging ?? throw new ArgumentNullException(nameof(selectionIsChanging));
             this.selctionChangedAction = selctionChangedAction ?? throw new ArgumentNullException(nameof(selctionChangedAction));
@@ -20,7 +20,7 @@ namespace JekyllWriter.Views.Posts
         {
             string identifier;
             string value;
-            var fileItem = item as File;
+            var fileItem = item as SourceFile;
             if (fileItem == null) {
                 identifier = "HeaderCell";
                 value = ((Folder)item).Name;
@@ -36,7 +36,7 @@ namespace JekyllWriter.Views.Posts
 
         public override bool IsGroupItem(NSOutlineView outlineView, NSObject item) => item is Folder;
 
-        public override bool ShouldSelectItem(NSOutlineView outlineView, NSObject item) => item is File;
+        public override bool ShouldSelectItem(NSOutlineView outlineView, NSObject item) => item is SourceFile;
 
         public override void SelectionIsChanging(NSNotification notification) => selectionIsChanging();
 
@@ -50,14 +50,14 @@ namespace JekyllWriter.Views.Posts
             selctionChangedAction(postFile);
         }
 
-        File GetPostFileFromSelectedRow(NSNotification notification) {
+        SourceFile GetPostFileFromSelectedRow(NSNotification notification) {
             var outlineView = notification.Object as NSOutlineView;
             if (outlineView == null)
             {
                 return null;
             }
 
-            return (File)outlineView.ItemAtRow(outlineView.SelectedRow);
+            return (SourceFile)outlineView.ItemAtRow(outlineView.SelectedRow);
         }
     }
 }

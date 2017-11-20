@@ -7,6 +7,8 @@ using JekyllWriter.Views.Posts;
 using JekyllWriter.Files;
 using JekyllWriter.Model;
 using JekyllWriter.ViewControllers;
+using CoreGraphics;
+using JekyllWriter.Views;
 
 namespace JekyllWriter
 {
@@ -15,6 +17,9 @@ namespace JekyllWriter
         readonly JekyllFileSystem jekyllFileSystem;
 
         PostController postController;
+        PreambleController preambleController;
+
+        PreambleView preambleView;
 
         public ViewController(IntPtr handle) : base(handle)
         {
@@ -23,14 +28,26 @@ namespace JekyllWriter
             jekyllFileSystem = new JekyllFileSystem("/Users/sankra/projects/sankra.github.io");
         }
 
+        public override void ViewWillAppear()
+        {
+            base.ViewWillAppear();
+            // Apply the Dark Interface Appearance
+            //View.Window.Appearance = NSAppearance.GetAppearance(NSAppearance.NameVibrantDark);
+
+        }
+
         public override void ViewDidLoad()
         {
             base.ViewDidLoad();
 
-            // TODO: Selection and UX etc. Would like to mimic Finder.
+            // TODO: Selection and UX etc. Would like to mimic Finder. Master detail?
             postsView.DataSource = new PostsDataSouce(jekyllFileSystem.GetDrafts(), jekyllFileSystem.GetPosts());
             postsView.Delegate = new PostsDelegate(SelectionIsChanging, SelctionChanged);
             postsView.ExpandItem(null, true);
+
+            stackView.RemoveView(textViewParent);
+            preambleView = new PreambleView(stackView);
+            stackView.AddView(textViewParent, NSStackViewGravity.Bottom);
         }
 
         public override void ViewWillDisappear()
@@ -53,10 +70,16 @@ namespace JekyllWriter
             }
         }
 
-        void SelctionChanged(File file) {
+        void SelctionChanged(SourceFile file) {
             try
             {
-                postController = new PostController(jekyllFileSystem, textView, file);
+                var post = jekyllFileSystem.ReadPost(file);
+                var preamble = post.Preamble;
+                postController = new PostController(jekyllFileSystem, textView, post);
+
+                // TODO
+                //preambleController = new PreambleController(preambleForm, preamble);
+
             }
             catch (Exception ex)
             {
