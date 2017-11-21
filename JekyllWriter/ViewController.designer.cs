@@ -9,42 +9,69 @@ using System.CodeDom.Compiler;
 
 namespace JekyllWriter
 {
-	[Register ("ViewController")]
-	partial class ViewController
-	{
-		[Outlet]
-		AppKit.NSOutlineView postsView { get; set; }
+    [Register ("ViewController")]
+    partial class ViewController
+    {
+        [Outlet]
+        AppKit.NSDatePicker Date { get; set; }
 
-		[Outlet]
-		AppKit.NSStackView stackView { get; set; }
+        [Outlet]
+        AppKit.NSTextField DateLabel { get; set; }
 
-		[Outlet]
-		AppKit.NSTextView textView { get; set; }
+        [Outlet]
+        AppKit.NSOutlineView postsView { get; set; }
 
-		[Outlet]
-		AppKit.NSScrollView textViewParent { get; set; }
-		
-		void ReleaseDesignerOutlets ()
-		{
-			if (postsView != null) {
-				postsView.Dispose ();
-				postsView = null;
-			}
+        [Outlet]
+        AppKit.NSTextView textView { get; set; }
 
-			if (stackView != null) {
-				stackView.Dispose ();
-				stackView = null;
-			}
+        [Outlet]
+        AppKit.NSLayoutConstraint TextViewTopConstraint { get; set; }
 
-			if (textView != null) {
-				textView.Dispose ();
-				textView = null;
-			}
+        [Outlet]
+        AppKit.NSTextField Title { get; set; }
 
-			if (textViewParent != null) {
-				textViewParent.Dispose ();
-				textViewParent = null;
-			}
-		}
-	}
+        [Outlet]
+        AppKit.NSTextField TitleLabel { get; set; }
+
+        [Action ("ShowOrHidePreamble:")]
+        partial void ShowOrHidePreamble (AppKit.NSButtonCell sender);
+        
+        void ReleaseDesignerOutlets ()
+        {
+            if (postsView != null) {
+                postsView.Dispose ();
+                postsView = null;
+            }
+
+            if (textView != null) {
+                textView.Dispose ();
+                textView = null;
+            }
+
+            if (TitleLabel != null) {
+                TitleLabel.Dispose ();
+                TitleLabel = null;
+            }
+
+            if (Title != null) {
+                Title.Dispose ();
+                Title = null;
+            }
+
+            if (DateLabel != null) {
+                DateLabel.Dispose ();
+                DateLabel = null;
+            }
+
+            if (Date != null) {
+                Date.Dispose ();
+                Date = null;
+            }
+
+            if (TextViewTopConstraint != null) {
+                TextViewTopConstraint.Dispose ();
+                TextViewTopConstraint = null;
+            }
+        }
+    }
 }

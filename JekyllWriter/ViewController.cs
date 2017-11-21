@@ -21,18 +21,29 @@ namespace JekyllWriter
 
         PreambleView preambleView;
 
+        bool showPreamble;
+        nfloat textViewHeightConstraintConst;
+
         public ViewController(IntPtr handle) : base(handle)
         {
             // TODO: From install or something
+            // TODO: Touchbar support
             // TODO: Sandboxing
             jekyllFileSystem = new JekyllFileSystem("/Users/sankra/projects/sankra.github.io");
+
+            showPreamble = true;
         }
 
         public override void ViewWillAppear()
         {
             base.ViewWillAppear();
             // Apply the Dark Interface Appearance
+            // TODO: Må være mulig å styre
             //View.Window.Appearance = NSAppearance.GetAppearance(NSAppearance.NameVibrantDark);
+            // Enable streamlined Toolbars
+            View.Window.TitleVisibility = NSWindowTitleVisibility.Hidden;
+
+
 
         }
 
@@ -40,14 +51,16 @@ namespace JekyllWriter
         {
             base.ViewDidLoad();
 
+            textViewHeightConstraintConst = TextViewTopConstraint.Constant;
+
             // TODO: Selection and UX etc. Would like to mimic Finder. Master detail?
             postsView.DataSource = new PostsDataSouce(jekyllFileSystem.GetDrafts(), jekyllFileSystem.GetPosts());
             postsView.Delegate = new PostsDelegate(SelectionIsChanging, SelctionChanged);
             postsView.ExpandItem(null, true);
 
-            stackView.RemoveView(textViewParent);
-            preambleView = new PreambleView(stackView);
-            stackView.AddView(textViewParent, NSStackViewGravity.Bottom);
+            //stackView.RemoveView(textViewParent);
+            //preambleView = new PreambleView(stackView);
+            //stackView.AddView(textViewParent, NSStackViewGravity.Bottom);
         }
 
         public override void ViewWillDisappear()
@@ -90,6 +103,25 @@ namespace JekyllWriter
                 };
                 alert.RunModal();
             }
+        }
+
+        partial void ShowOrHidePreamble(NSButtonCell sender)
+        {
+            // TODO: Animation
+            Title.Hidden = showPreamble;
+            DateLabel.Hidden = showPreamble;
+            Date.Hidden = showPreamble;
+
+            if (showPreamble) {
+                TitleLabel.StringValue = "lol, dette bra bra tittel?";
+                TextViewTopConstraint.Constant = 42;    
+            } else {
+                TitleLabel.StringValue = "Title:";
+                TextViewTopConstraint.Constant = textViewHeightConstraintConst;
+            }
+
+
+            showPreamble = !showPreamble;
         }
     }
 }
