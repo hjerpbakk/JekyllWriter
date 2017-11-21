@@ -680,13 +680,13 @@
                                 <rect key="frame" x="0.0" y="0.0" width="421" height="339"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <subviews>
-                                    <scrollView autohidesScrollers="YES" horizontalLineScroll="26" horizontalPageScroll="10" verticalLineScroll="26" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="m4y-bc-gsd">
+                                    <scrollView autohidesScrollers="YES" horizontalLineScroll="19" horizontalPageScroll="10" verticalLineScroll="19" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="m4y-bc-gsd">
                                         <rect key="frame" x="0.0" y="0.0" width="421" height="339"/>
                                         <clipView key="contentView" drawsBackground="NO" id="Hv3-5f-MIi">
                                             <rect key="frame" x="1" y="1" width="419" height="337"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <subviews>
-                                                <outlineView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" selectionHighlightStyle="sourceList" multipleSelection="NO" autosaveColumns="NO" rowHeight="24" rowSizeStyle="automatic" viewBased="YES" indentationPerLevel="16" outlineTableColumn="U0R-e0-jSP" id="sUE-Vl-vUw">
+                                                <outlineView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" selectionHighlightStyle="sourceList" multipleSelection="NO" autosaveColumns="NO" rowSizeStyle="automatic" viewBased="YES" indentationPerLevel="16" outlineTableColumn="U0R-e0-jSP" id="sUE-Vl-vUw">
                                                     <rect key="frame" x="0.0" y="0.0" width="419" height="337"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <size key="intercellSpacing" width="3" height="2"/>
@@ -873,7 +873,7 @@
                                                     <constraint firstItem="x9b-5H-iUK" firstAttribute="top" secondItem="XhF-g1-rpd" secondAttribute="top" constant="20" symbolic="YES" id="2UV-kD-NZ1"/>
                                                     <constraint firstItem="grb-Dj-P1n" firstAttribute="leading" secondItem="x9b-5H-iUK" secondAttribute="trailing" constant="8" symbolic="YES" id="2kh-EW-irP"/>
                                                     <constraint firstAttribute="trailing" secondItem="hF7-Ht-tGz" secondAttribute="trailing" id="3L1-ZW-x7l"/>
-                                                    <constraint firstItem="x9b-5H-iUK" firstAttribute="leading" secondItem="XvP-X9-XLF" secondAttribute="trailing" constant="8" symbolic="YES" id="BPw-xt-ngF"/>
+                                                    <constraint firstAttribute="leading" secondItem="XvP-X9-XLF" secondAttribute="leading" constant="-42" id="BPw-xt-ngF"/>
                                                     <constraint firstItem="x9b-5H-iUK" firstAttribute="leading" secondItem="DNu-WZ-8iW" secondAttribute="leading" id="Cwu-j8-aFX"/>
                                                     <constraint firstItem="XvP-X9-XLF" firstAttribute="centerY" secondItem="x9b-5H-iUK" secondAttribute="centerY" id="KZJ-04-c6C"/>
                                                     <constraint firstAttribute="bottom" secondItem="hF7-Ht-tGz" secondAttribute="bottom" id="Qby-PU-L4w"/>
@@ -913,6 +913,7 @@
                         <outlet property="TextViewTopConstraint" destination="X8j-oI-JIk" id="LYU-ec-Q2O"/>
                         <outlet property="Title" destination="x9b-5H-iUK" id="2Uy-3U-26z"/>
                         <outlet property="TitleLabel" destination="XvP-X9-XLF" id="7j3-eL-tKR"/>
+                        <outlet property="TrailingHeaderConstraint" destination="BPw-xt-ngF" id="hNT-mY-6fM"/>
                         <outlet property="postsView" destination="sUE-Vl-vUw" id="WXu-li-oif"/>
                         <outlet property="textView" destination="B9l-L7-jhs" id="Tg4-fu-0s5"/>
                     </connections>

@@ -113,7 +113,7 @@ namespace JekyllWriter
             Date.Hidden = showPreamble;
 
             if (showPreamble) {
-                TitleLabel.StringValue = "lol, dette bra bra tittel?";
+                TitleLabel.StringValue = "lol, dette br s skdjf lsdkj øklas lks lsk jlsadkjf ls lkas jsk llsk  klasjfas s sad fsad fa bra tittel?";
                 TextViewTopConstraint.Constant = 42;    
             } else {
                 TitleLabel.StringValue = "Title:";
