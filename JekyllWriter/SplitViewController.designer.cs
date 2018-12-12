@@ -9,11 +9,9 @@ using System.CodeDom.Compiler;
 
 namespace JekyllWriter
 {
-	[Register ("MainWindowController")]
-	partial class MainWindowController
+	[Register ("SplitViewController")]
+	partial class SplitViewController
 	{
-		[Action ("TooglePostsList:")]
-		partial void TooglePostsList (AppKit.NSToolbarItem sender);
 		
 		void ReleaseDesignerOutlets ()
 		{

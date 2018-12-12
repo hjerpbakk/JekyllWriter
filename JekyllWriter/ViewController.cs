@@ -24,6 +24,8 @@ namespace JekyllWriter
         bool showPreamble;
         nfloat textViewHeightConstraintConst;
 
+
+        // TODO: https://developer.xamarin.com/guides/mac/platform-features/introduction-to-macos-sierra/modern-cocoa-apps/#Building-Modern-Looks-with-Modern-Views
         public ViewController(IntPtr handle) : base(handle)
         {
             // TODO: From install or something

@@ -20,5 +20,6 @@ namespace JekyllWriter
             // Set window to use Full Size Content View
             //Window.StyleMask = NSWindowStyle.FullSizeContentView;
         }
+
 	}
 }

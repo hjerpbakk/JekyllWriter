@@ -50,7 +50,7 @@
     <Reference Include="System.Core" />
     <Reference Include="Xamarin.Mac" />
     <Reference Include="YamlDotNet">
-      <HintPath>..\packages\YamlDotNet.4.2.2\lib\netstandard1.3\YamlDotNet.dll</HintPath>
+      <HintPath>..\packages\YamlDotNet.5.3.0\lib\netstandard1.3\YamlDotNet.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -105,9 +105,16 @@
       <DependentUpon>MainWindowController.cs</DependentUpon>
     </Compile>
     <Compile Include="Views\PreambleView.cs" />
+    <Compile Include="SplitViewController.cs" />
+    <Compile Include="SplitViewController.designer.cs">
+      <DependentUpon>SplitViewController.cs</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <InterfaceDefinition Include="Main.storyboard" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\sidebar.png" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Mac\Xamarin.Mac.CSharp.targets" />
 </Project>

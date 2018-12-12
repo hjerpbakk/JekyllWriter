@@ -1,17 +1,13 @@
-﻿using System;
-using JekyllWriter.Model;
+﻿using JekyllWriter.Model;
 using YamlDotNet.Serialization;
 using YamlDotNet.Serialization.NamingConventions;
 
-namespace JekyllWriter.Parsers
-{
-    public class PreambleParser
-    {
-        readonly Deserializer deserializer;
-        readonly Serializer serializer;
+namespace JekyllWriter.Parsers {
+    public class PreambleParser {
+        readonly IDeserializer deserializer;
+        readonly ISerializer serializer;
 
-        public PreambleParser()
-        {
+        public PreambleParser() {
             var namingConvention = new UnderscoredNamingConvention();
             deserializer = new DeserializerBuilder()
                 .WithNamingConvention(namingConvention)
